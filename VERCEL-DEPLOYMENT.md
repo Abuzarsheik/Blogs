@@ -53,8 +53,8 @@ vercel --prod
 4. Add environment variables:
    ```
    NODE_ENV=production
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
+   MONGODB_URI=[YOUR_MONGODB_CONNECTION_STRING]
+   JWT_SECRET=[GENERATE_RANDOM_SECRET_KEY]
    PORT=5000
    ```
 
@@ -81,8 +81,8 @@ heroku create your-blog-api
 
 # Add environment variables
 heroku config:set NODE_ENV=production
-heroku config:set MONGODB_URI=your_mongodb_connection_string
-heroku config:set JWT_SECRET=your_jwt_secret
+heroku config:set MONGODB_URI=[YOUR_MONGODB_CONNECTION_STRING]
+heroku config:set JWT_SECRET=[GENERATE_RANDOM_SECRET_KEY]
 
 # Deploy
 git add .
@@ -101,8 +101,8 @@ GENERATE_SOURCEMAP=false
 #### **Backend Environment Variables**
 ```env
 NODE_ENV=production
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/mern-blog
-JWT_SECRET=your-super-secret-jwt-key
+MONGODB_URI=[YOUR_MONGODB_ATLAS_CONNECTION_STRING]
+JWT_SECRET=[GENERATE_A_STRONG_RANDOM_SECRET]
 PORT=5000
 CORS_ORIGIN=https://your-frontend-domain.vercel.app
 ```
@@ -198,6 +198,20 @@ cd client && vercel --prod
 
 # Update environment variables
 vercel env add REACT_APP_API_URL
+```
+
+## 🔐 **Security Note**
+
+Never commit actual secrets to your repository. Use environment variables for:
+- Database connection strings
+- JWT secrets
+- API keys
+- Passwords
+
+Generate strong secrets using tools like:
+```bash
+# Generate random JWT secret
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ```
 
 ## 📞 **Support**
