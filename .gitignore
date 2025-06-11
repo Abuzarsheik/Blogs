@@ -81,7 +81,8 @@ dist
 
 # Gatsby files
 .cache/
-public
+# NOTE: Commented out to allow client/public for React
+# public
 
 # Vue.js build output
 dist/
