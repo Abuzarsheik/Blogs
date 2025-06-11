@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -173,6 +173,11 @@ const EditPost = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="mb-6">
+            <Link to="/" className="text-primary-600 hover:text-primary-700 text-sm font-medium">
+              ← Back to Home
+            </Link>
+          </div>
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Edit Post</h1>
             <button

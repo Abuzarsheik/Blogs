@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const CreatePost = () => {
@@ -100,6 +100,11 @@ const CreatePost = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="mb-6">
+            <Link to="/" className="text-primary-600 hover:text-primary-700 text-sm font-medium">
+              ← Back to Home
+            </Link>
+          </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-8">Create New Post</h1>
           
           {error && (
