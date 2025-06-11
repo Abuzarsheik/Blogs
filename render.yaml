@@ -1,0 +1,42 @@
+services:
+  # Frontend (React)
+  - type: web
+    name: blog-frontend
+    env: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # Backend (Node.js/Express)
+  - type: web
+    name: blog-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: blog-database
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: https://blog-frontend.onrender.com
+    healthCheckPath: /api/health
+
+  # Database (MongoDB)
+databases:
+  - name: blog-database
+    databaseName: blog_db
+    user: blog_user
+    region: oregon
+    plan: free 

@@ -20,10 +20,23 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Middleware
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
-  credentials: true
-}));
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    process.env.CLIENT_URL,
+    // Add your Render frontend URL here after deployment
+    'https://blog-frontend.onrender.com',
+    // Add your Vercel URL if deploying there too
+    process.env.VERCEL_URL,
+    // Add your Netlify URL if deploying there too
+    process.env.NETLIFY_URL
+  ].filter(Boolean), // Remove undefined values
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
